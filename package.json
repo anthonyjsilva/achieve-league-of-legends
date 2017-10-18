@@ -1,0 +1,23 @@
+{
+  "name": "achieve",
+  "version": "1.0.0",
+  "description": "Personal project to showcase my skills as a Full Stack developer",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthonyjsilva/achieve.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anthonyjsilva/achieve/issues"
+  },
+  "homepage": "https://github.com/anthonyjsilva/achieve#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
