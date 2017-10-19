@@ -9,11 +9,13 @@ const bodyParser = require('body-parser');
 const app = express();
 
 app.engine('mustache', mustacheExpress());
-app.set('views', './views')
 app.set('view engine', 'mustache')
+app.set('views', './views')
 
+app.use(express.static('./public/'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
 
 app.get('/', (req, res) => {
   res.render('index');
@@ -26,7 +28,7 @@ app.post('/search', (req, res) => {
     .then(res => res.json())
       .then(json => {
         console.log(json);
-        res.render('index', json);
+        res.render('search', json);
       });
 });
 

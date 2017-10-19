@@ -1,0 +1,69 @@
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  background-color: #383838;
+  background: linear-gradient(to bottom, #414345, #232526);
+  background-attachment: fixed;
+  color: lightgray;
+}
+
+header {
+  flex-basis: 100%;
+}
+
+main {
+  flex-basis: 100%;
+}
+
+#subtitle {
+  margin: 0 auto 20px auto;
+  text-shadow: 2px 2px 20px #000000;
+}
+
+#logo {
+  font-family: 'Knewave', cursive;
+  text-transform: uppercase;
+  color: indianred;
+  font-size: 4em;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 17px #0c0c0c;
+}
+
+.para {
+  margin: 20px auto;
+  width: 600px;
+}
+
+form {
+  margin: auto;
+  width: 250px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 0;
+  margin-bottom: 10px;
+  box-shadow: 3px 5px 5px #251d1d;
+}
+
+input[type="text"] {
+  box-sizing: border-box;
+  outline: none;
+  font-size: 1em;
+}
+
+input[type="submit"] {
+  font-family: 'Knewave', cursive;
+  color: black;
+  background-color: indianred;
+  font-size: 20px;
+  padding: 5px 10px;
+}
+
+input[type="submit"]:hover {
+  /*background-color: gray;
+  color: indianred;*/
+}
