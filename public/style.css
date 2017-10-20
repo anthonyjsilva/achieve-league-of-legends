@@ -36,6 +36,19 @@ main {
   width: 600px;
 }
 
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.list li {
+  list-style: none;
+  padding-right: 5px;
+
+  /*flex-grow: 1;*/
+}
+
 form {
   margin: auto;
   width: 250px;
