@@ -64,6 +64,5 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  /*background-color: gray;
-  color: indianred;*/
+  box-shadow: none;
 }

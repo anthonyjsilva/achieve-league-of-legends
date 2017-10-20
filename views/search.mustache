@@ -8,11 +8,21 @@
   </head>
   <body>
     <header>
-      <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{{profileIconId}}.png" alt="">
+      <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{{summoner.profileIconId}}.png" alt="">
     </header>
     <main>
-      <p>HI, {{name}}!</p>
-      <p>accountId is: {{accountId}}</p>
+      <p>HI, {{summoner.name}}!</p>
+      <p>accountId is: {{summoner.accountId}}</p>
+      <ul class="">
+        {{#matches}}
+          {{#matches}}
+            <li>
+              {{champion}}
+              <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/Aatrox.png" alt="">
+            </li>
+          {{/matches}}
+        {{/matches}}
+      </ul>
     </main>
     <a href="/">Back</a>
   </body>
