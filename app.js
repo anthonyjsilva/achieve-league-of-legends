@@ -1,10 +1,11 @@
-const API_KEY = require('./apikey');
+// setup ---------------------------------------------------
 
+// riot games api
 const BASE_API_URL = 'https://na1.api.riotgames.com/lol/';
-const SUMMONER_ENDPOINT = 'summoner/v3/summoners/by-name/';
-const GET_MATCHES_URL = 'match/v3/matchlists/by-account/215961083/recent';
-const CHAMPIONS_API_URL = 'static-data/v3/champions';
 
+// imports
+const API_KEY = require('./apikey');
+const CHAMPION_DATA = require('./championData');
 
 const express = require('express'),
   fetch = require('node-fetch'),
@@ -12,6 +13,7 @@ const express = require('express'),
   bodyParser = require('body-parser'),
   app = express();
 
+// setup
 app.engine('mustache', mustacheExpress());
 app.set('view engine', 'mustache')
 app.set('views', './views')
@@ -20,55 +22,53 @@ app.use(express.static('./public/'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-let championList;
-function getChampData() {
-  fetch(`${BASE_API_URL}${CHAMPIONS_API_URL}?locale=en_US&tags=keys&api_key=${API_KEY}`)
-  .then(res => res.json()).then(json => {
-    championList = json.keys;
-    console.log(championList);
-  });
-}
+// url request builders ---------------------------------------------------
 
-const championNameById = id => championList[id];
+const SUMMONER_ENDPOINT = name => `${BASE_API_URL}summoner/v3/summoners/by-name/${name}?api_key=${API_KEY}`;
+const MATCHLIST_ENDPOINT = id => `${BASE_API_URL}match/v3/matchlists/by-account/${id}/recent?api_key=${API_KEY}`;
+const MATCH_ENDPOINT = id => `${BASE_API_URL}match/v3/matches/2626221414?api_key=${API_KEY}`;
+
+// routes ---------------------------------------------------
 
 app.get('/', (req, res) => {
-  getChampData();
   res.render('index');
 });
 
+/*
+look up a summoner based on form data,
+find that summoners recent games,
+find stats on those recent games on a per-game basis
+*/
+// TODO: get the current version for static data with /realms endpoint
 app.post('/search', (req, res) => {
-  console.log(req.body);
+
   const data = {};
-  const summoner = req.body.name;
+  const name = req.body.name;
   let gameid;
-
-  fetch(`${BASE_API_URL}${SUMMONER_ENDPOINT}${summoner}?api_key=${API_KEY}`).then(res => res.json()).then(json => {
+  // data.summoner.accountId
+  fetch(SUMMONER_ENDPOINT(name)).then(res => res.json()).then(json => {
     data.summoner = json;
-    fetch(`${BASE_API_URL}match/v3/matchlists/by-account/${data.summoner.accountId}/recent?api_key=${API_KEY}`).then(res => res.json()).then(json => {
-      // console.log(json);
-      data.matches = json;
-      // console.log(data);
-      gameid = 2626221414; //json.matches.matches[0].gameId;
-      data.matches.matches.forEach((match, index, array) => {
 
-        array[index].char = championNameById(match.champion);
-        // console.log(match);
-        if (match.queue <= 440 && match.queue >= 400) {
-          array[index].relevant = true;
-        }
+    fetch(MATCHLIST_ENDPOINT(data.summoner.accountId)).then(res => res.json()).then(json => {
+      Object.assign(data, json);
 
+      // TODO: make gameid dynamic
+      gameid = 2626221414;
+
+      data.matches.forEach((match, index, array) => {
+        array[index].championName = CHAMPION_DATA.getName(match.champion);
+
+        // only show flex 5v5, solo/duo 5v5, draft and blindpick 5v5
+        array[index].relevant = true;//(match.queue <= 440 && match.queue >= 400);
       });
-
-      // console.log(data);
     }).then(() => {
-      fetch(`https://na1.api.riotgames.com/lol/match/v3/matches/2626221414?api_key=${API_KEY}`).then(res => res.json()).then(json => {
-        data.game = json;
+      fetch(MATCH_ENDPOINT()).then(res => res.json()).then(json => {
+        Object.assign(data, json);
         console.log(data);
         res.render('search', data);
       });
-    })
-
+    });
   });
 });
 
-app.listen(3000, () => console.log('Successfully started express application!'));
+app.listen(3000, () => console.log('We runnin baby!'));

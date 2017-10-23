@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Achieve</title>
-    <link rel="stylesheet" href="/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Knewave|Source+Sans+Pro" rel="stylesheet">
-  </head>
-  <body>
-    <header>
-      <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{{summoner.profileIconId}}.png" alt="">
-    </header>
-    <main>
-      <p>HI, {{summoner.name}}!</p>
-      <p>accountId is: {{summoner.accountId}}</p>
-      {{#game}}
-      {{gameMode}}
-      {{#participants}}
-      {{highestAchievedSeasonTier}}
-      {{/participants}}
-      {{/game}}
-      <div class="matches-container">
-        {{#matches}}
-          {{#matches}}
-            {{#relevant}}
-            <div class="match-container">
-              <img src="https://ddragon.leagueoflegends.com/cdn/7.10.1/img/champion/{{char}}.png" alt="champion icon">
-              <p>
-                {{lane}}
-              </p>
 
-            </div>
-            {{/relevant}}
-          {{/matches}}
-        {{/matches}}
-      </div>
-    </main>
-    <a href="/">Back</a>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Achieve</title>
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Knewave|Source+Sans+Pro" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{{summoner.profileIconId}}.png" alt="">
+  </header>
+  <main>
+    <p>HI, {{summoner.name}}!</p>
+    <p>accountId is: {{summoner.accountId}}</p>
+    {{gameMode}}
+    {{#participants}}
+      {{highestAchievedSeasonTier}}
+    {{/participants}}
+    <div class="matches-container">
+      {{#matches}}
+        {{#relevant}}
+          <div class="match-container">
+            <img src="https://ddragon.leagueoflegends.com/cdn/7.20.3/img/champion/{{championName}}.png" alt="champion icon">
+            <p>
+              {{lane}}
+            </p>
+          </div>
+        {{/relevant}}
+      {{/matches}}
+    </div>
+  </main>
+  <a href="/">Back</a>
+</body>
+
 </html>
