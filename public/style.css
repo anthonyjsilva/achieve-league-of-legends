@@ -17,6 +17,25 @@ main {
   flex-basis: 100%;
 }
 
+img {
+  width: 100px;
+  border-radius: 100px;
+}
+
+.matches-container {
+  border: 1px solid white;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 50%;
+  text-align: left;
+}
+
+.match-container {
+  flex-basis: 100%;
+  border: 1px dotted white;
+}
+
 #subtitle {
   margin: 0 auto 20px auto;
   text-shadow: 2px 2px 20px #000000;

@@ -13,15 +13,27 @@
     <main>
       <p>HI, {{summoner.name}}!</p>
       <p>accountId is: {{summoner.accountId}}</p>
-      <ul class="list">
+      {{#game}}
+      {{gameMode}}
+      {{#participants}}
+      {{highestAchievedSeasonTier}}
+      {{/participants}}
+      {{/game}}
+      <div class="matches-container">
         {{#matches}}
           {{#matches}}
-            <li>
-              <img src="https://ddragon.leagueoflegends.com/cdn/7.10.1/img/champion/{{char}}.png" style="width:50px" alt="">
-            </li>
+            {{#relevant}}
+            <div class="match-container">
+              <img src="https://ddragon.leagueoflegends.com/cdn/7.10.1/img/champion/{{char}}.png" alt="champion icon">
+              <p>
+                {{lane}}
+              </p>
+
+            </div>
+            {{/relevant}}
           {{/matches}}
         {{/matches}}
-      </ul>
+      </div>
     </main>
     <a href="/">Back</a>
   </body>
