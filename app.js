@@ -59,7 +59,8 @@ app.post('/search', (req, res) => {
         array[index].championName = CHAMPION_DATA.getName(match.champion);
 
         // only show flex 5v5, solo/duo 5v5, draft and blindpick 5v5
-        array[index].relevant = true;//(match.queue <= 440 && match.queue >= 400);
+        // array[index].relevant = (match.queue <= 440 && match.queue >= 400);
+        array[index].relevant = (index < 5);
       });
     }).then(() => {
       fetch(MATCH_ENDPOINT()).then(res => res.json()).then(json => {

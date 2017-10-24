@@ -7,11 +7,25 @@ body {
   background: linear-gradient(to bottom, #414345, #232526);
   background-attachment: fixed;
   color: lightgray;
+  margin: 0;
 }
 
 header {
   flex-basis: 100%;
 }
+
+.banner {
+  background: rgba(20, 20, 20, .7);
+  width: 100%;
+  text-transform: uppercase;
+  font-family: 'Knewave', cursive;
+  margin: 40px 0;
+  padding: 20px;
+}
+
+.championIcon {}
+
+.lane {}
 
 main {
   flex-basis: 100%;
@@ -23,7 +37,7 @@ img {
 }
 
 .matches-container {
-  border: 1px solid white;
+  /*border: 1px solid white;*/
   display: flex;
   flex-wrap: wrap;
   margin: auto;
@@ -33,7 +47,11 @@ img {
 
 .match-container {
   flex-basis: 100%;
-  border: 1px dotted white;
+  background: rgba(20, 20, 20, .7);
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  /*border: 1px dotted white;*/
 }
 
 #subtitle {
@@ -64,7 +82,6 @@ img {
 .list li {
   list-style: none;
   padding-right: 5px;
-
   /*flex-grow: 1;*/
 }
 

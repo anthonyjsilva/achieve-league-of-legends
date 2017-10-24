@@ -10,23 +10,21 @@
 
 <body>
   <header>
-    <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{{summoner.profileIconId}}.png" alt="">
+    <h1 id="logo">Achieve</h1>
+    <h4 id="subtitle">Achievements for League of Legends</h4>
   </header>
   <main>
-    <p>HI, {{summoner.name}}!</p>
-    <p>accountId is: {{summoner.accountId}}</p>
-    {{gameMode}}
-    {{#participants}}
-      {{highestAchievedSeasonTier}}
-    {{/participants}}
+    <div class="banner">
+      <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{{summoner.profileIconId}}.png" alt="">
+      <h2>{{summoner.name}}</h2>
+    </div>
+
     <div class="matches-container">
       {{#matches}}
         {{#relevant}}
           <div class="match-container">
-            <img src="https://ddragon.leagueoflegends.com/cdn/7.20.3/img/champion/{{championName}}.png" alt="champion icon">
-            <p>
-              {{lane}}
-            </p>
+            <img class="championIcon" src="https://ddragon.leagueoflegends.com/cdn/7.20.3/img/champion/{{championName}}.png" alt="champion icon">
+            <span class="lane">{{lane}}</span >
           </div>
         {{/relevant}}
       {{/matches}}
