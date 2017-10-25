@@ -30,6 +30,16 @@ const MATCHLIST_ENDPOINT = id => `${BASE_API_URL}match/v3/matchlists/by-account/
 const MATCH_ENDPOINT = gameId => `${BASE_API_URL}match/v3/matches/${gameId}?api_key=${API_KEY}`;
 
 // my functions ---------------------------------------------------
+const rankColors = {
+  bronze: "#bd8e53",
+  silver: "#d0cdca",
+  gold: "#e0b519",
+  platinum: "#74b39f",
+  diamond: "#6e9ce0",
+  master: "#bd8e53",
+  challenger: "#bd8e53",
+};
+
 const summonerSpells = {
   "1" : "SummonerBoost",
   "3" : "SummonerExhaust",
@@ -50,6 +60,7 @@ const queueTypes = {
   "440": "5v5 Ranked Flex",
 };
 
+const getRankColor = rank => rankColors[rank.toLowerCase()];
 const getSummonerSpellName = id => summonerSpells[id];
 const getQueueName = id => queueTypes[id];
 
@@ -94,6 +105,7 @@ function parseSummonerData(summoner) {
     gameStats.spell2 = getSummonerSpellName(playerObj.spell2Id);;
 
     parsedData.rank = playerObj.highestAchievedSeasonTier;
+    parsedData.rankColor = getRankColor(playerObj.highestAchievedSeasonTier);
 
     gameStats.items = [];
     gameStats.items.push(playerObj.stats.item0);

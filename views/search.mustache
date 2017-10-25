@@ -13,7 +13,7 @@
 
   <main>
     <div class="banner">
-      <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{{profileIconId}}.png" alt="">
+      <img {{#rankColor}}class="profile-icon" style="border-color:{{rankColor}}{{/rankColor}}" src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{{profileIconId}}.png" alt="">
       <h2>{{name}}</h2>
       <h4>{{rank}}</h4>
     </div>
@@ -27,7 +27,7 @@
           </div>
           <div class="spells-container">
             <div class="">
-              <img src="http://ddragon.leagueoflegends.com/cdn/7.20.3/img/spell/{{spell1}}.png" alt="">
+              <img  src="http://ddragon.leagueoflegends.com/cdn/7.20.3/img/spell/{{spell1}}.png" alt="">
             </div>
             <div class="">
               <img src="http://ddragon.leagueoflegends.com/cdn/7.20.3/img/spell/{{spell2}}.png" alt="">
@@ -47,6 +47,7 @@
             </div>
             <div class="kda-container">
               <span>{{kills}} / {{deaths}} / {{assists}}</span>
+              <span>{{kda}}</span>
             </div>
           </div>
           <div class="bottom-section">
