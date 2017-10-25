@@ -15,18 +15,23 @@
     <div class="banner">
       <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{{profileIconId}}.png" alt="">
       <h2>{{name}}</h2>
+      <h4>{{rank}}</h4>
     </div>
-    {{#gameStats}}
     <div class="matches-container">
-      <div class="match-container">
-        <div class="top-section">
-          <div class="icon-container">
-            <img class="championIcon {{#win}}win-border{{/win}}{{^win}}loss-border{{/win}}" src="https://ddragon.leagueoflegends.com/cdn/7.20.3/img/champion/{{championName}}.png" alt="champion icon">
-            <span class="lane">{{lane}}</span >
+    {{#gameStats}}
+        <div class="match-container">
+          <div class="top-section">
+            <div class="icon-container">
+              <img class="championIcon {{#win}}win-border{{/win}}{{^win}}loss-border{{/win}}" src="https://ddragon.leagueoflegends.com/cdn/7.20.3/img/champion/{{championName}}.png" alt="champion icon">
+              <span class="lane">{{lane}}</span >
           </div>
           <div class="spells-container">
-            <img src="" alt="">
-            <img src="" alt="">
+            <div class="">
+              <img src="http://ddragon.leagueoflegends.com/cdn/7.20.3/img/spell/{{spell1}}.png" alt="">
+            </div>
+            <div class="">
+              <img src="http://ddragon.leagueoflegends.com/cdn/7.20.3/img/spell/{{spell2}}.png" alt="">
+            </div>
           </div>
           <div class="items-container">
             {{#items}}
@@ -37,25 +42,31 @@
           </div>
           <div class="stats-container">
             <span>level {{level}}</span>
-            <span>{{cs}}cs</span>
-            <span>{{gold}}g</span>
+              <span>{{cs}} CS</span>
+              <span>{{gold}}</span>
+            </div>
+            <div class="kda-container">
+              <span>{{kills}} / {{deaths}} / {{assists}}</span>
+            </div>
           </div>
-          <div class="kda-container">
-            <span>{{kills}} / {{deaths}} / {{assists}}</span>
-          </div>
-        </div>
-        <div class="bottom-section">
-          <div class="win-container ">
-            x minute {{#win}}<span class="win">WIN</span>{{/win}}
-            {{^win}}<span class="loss">LOSS</span>{{/win}}
-          </div>
-          <div class="medals-container">
+          <div class="bottom-section">
+            <div class="win-container ">
+              <div class="">
+                {{time}} minute
+                {{#win}}<span class="win">WIN</span>{{/win}}
+                {{^win}}<span class="loss">LOSS</span>{{/win}}
+              </div>
+              <div class="">
+                {{queue}}
+              </div>
+            </div>
+            <div class="medals-container">
 
+            </div>
           </div>
         </div>
-      </div>
-    </div>
     {{/gameStats}}
+  </div>
   </main>
   <div class="back-button">
     <a href="/">Back</a>

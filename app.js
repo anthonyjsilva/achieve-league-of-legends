@@ -30,6 +30,32 @@ const MATCHLIST_ENDPOINT = id => `${BASE_API_URL}match/v3/matchlists/by-account/
 const MATCH_ENDPOINT = gameId => `${BASE_API_URL}match/v3/matches/${gameId}?api_key=${API_KEY}`;
 
 // my functions ---------------------------------------------------
+const summonerSpells = {
+  "1" : "SummonerBoost",
+  "3" : "SummonerExhaust",
+  "4" : "SummonerFlash",
+  "6" : "SummonerHaste",
+  "7" : "SummonerHeal",
+  "11" : "SummonerSmite",
+  "14" : "SummonerDot",
+  "13" : "SummonerMana",
+  "12" : "SummonerTeleport",
+  "21" : "SummonerBarrier",
+};
+
+const queueTypes = {
+  "400": "5v5 Draft Pick",
+  "420": "5v5 Ranked Solo",
+  "430": "5v5 Blind Pick",
+  "440": "5v5 Ranked Flex",
+};
+
+const getSummonerSpellName = id => summonerSpells[id];
+const getQueueName = id => queueTypes[id];
+
+const formatGold = gold => (gold > 999) ? (gold / 1000).toFixed(1) + 'K' : gold;
+const getKDA = (k, d, a) => ((k + a) / d).toFixed(1) + " KDA";
+const formatTime = time => (time / 60).toFixed();
 
 // gets all the relvant data and passes that to the template engine
 function parseSummonerData(summoner) {
@@ -61,8 +87,13 @@ function parseSummonerData(summoner) {
     gameStats.lane = game.lane;
 
     gameStats.win = playerObj.stats.win;
-    gameStats.spell1 = playerObj.spell1Id;
-    gameStats.spell2 = playerObj.spell2Id;
+    gameStats.queue = getQueueName(game.gameData.queueId);
+    gameStats.time = formatTime(game.gameData.gameDuration);
+
+    gameStats.spell1 = getSummonerSpellName(playerObj.spell1Id);
+    gameStats.spell2 = getSummonerSpellName(playerObj.spell2Id);;
+
+    parsedData.rank = playerObj.highestAchievedSeasonTier;
 
     gameStats.items = [];
     gameStats.items.push(playerObj.stats.item0);
@@ -75,9 +106,10 @@ function parseSummonerData(summoner) {
     gameStats.kills = playerObj.stats.kills;
     gameStats.deaths = playerObj.stats.deaths;
     gameStats.assists = playerObj.stats.assists;
+    gameStats.kda = getKDA(gameStats.kills, gameStats.deaths, gameStats.assists);
     gameStats.level = playerObj.stats.champLevel;
     gameStats.cs = playerObj.stats.totalMinionsKilled;
-    gameStats.gold = playerObj.stats.goldEarned;
+    gameStats.gold = formatGold(playerObj.stats.goldEarned);
 
     playerStats.push(gameStats);
 
