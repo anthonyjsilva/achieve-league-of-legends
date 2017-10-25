@@ -3,11 +3,14 @@ body {
   display: flex;
   flex-wrap: wrap;
   text-align: center;
+  justify-content: center;
   background-color: #383838;
   background: linear-gradient(to bottom, #414345, #232526);
   background-attachment: fixed;
   color: lightgray;
   margin: 0;
+  margin-bottom: 80px;
+
 }
 
 header {
@@ -23,9 +26,19 @@ header {
   padding: 20px;
 }
 
-.championIcon {}
+.icon-container {
+  position: relative;
+}
 
-.lane {}
+.lane {
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  background: rgba(20, 20, 20, .9);
+  padding: 5px;
+  font-size: .9em;
+  border-radius: 20px;
+}
 
 main {
   flex-basis: 100%;
@@ -51,12 +64,14 @@ img {
   padding: 10px;
   border-radius: 20px;
   margin-bottom: 10px;
+  position: relative;
   /*border: 1px dotted white;*/
 }
 
 #subtitle {
   margin: 0 auto 20px auto;
   text-shadow: 2px 2px 20px #000000;
+  font-size: 1.4em;
 }
 
 #logo {
@@ -68,6 +83,12 @@ img {
   text-shadow: 2px 2px 17px #0c0c0c;
 }
 
+.back {
+  flex-basis: 50%;
+  background: rgba(20, 20, 20, .7);
+  /*width: 30%;*/
+  text-align: center;
+}
 .para {
   margin: 20px auto;
   width: 600px;

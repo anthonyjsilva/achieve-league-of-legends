@@ -15,22 +15,27 @@
   </header>
   <main>
     <div class="banner">
-      <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{{summoner.profileIconId}}.png" alt="">
-      <h2>{{summoner.name}}</h2>
+      <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{{profileIconId}}.png" alt="">
+      <h2>{{name}}</h2>
     </div>
-
+    {{#gameStats}}
     <div class="matches-container">
-      {{#matches}}
-        {{#relevant}}
-          <div class="match-container">
-            <img class="championIcon" src="https://ddragon.leagueoflegends.com/cdn/7.20.3/img/champion/{{championName}}.png" alt="champion icon">
-            <span class="lane">{{lane}}</span >
-          </div>
-        {{/relevant}}
-      {{/matches}}
+      <div class="match-container">
+        <div class="icon-container">
+          <img class="championIcon" src="https://ddragon.leagueoflegends.com/cdn/7.20.3/img/champion/{{championName}}.png" alt="champion icon">
+          <span class="lane">{{lane}}</span >
+        </div>
+        <p>{{win}}</p>
+        <p>{{kills}} / {{deaths}} / {{assists}}</p>
+        <p>level {{level}} / {{cs}}cs / {{gold}}g</p>
+      </div>
     </div>
+    {{/gameStats}}
   </main>
-  <a href="/">Back</a>
+  <div class="back">
+    <a href="/">Back</a>
+  </div>
+
 </body>
 
 </html>

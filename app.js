@@ -29,6 +29,64 @@ const SUMMONER_ENDPOINT = name => `${BASE_API_URL}summoner/v3/summoners/by-name/
 const MATCHLIST_ENDPOINT = id => `${BASE_API_URL}match/v3/matchlists/by-account/${id}/recent?api_key=${API_KEY}`;
 const MATCH_ENDPOINT = gameId => `${BASE_API_URL}match/v3/matches/${gameId}?api_key=${API_KEY}`;
 
+// my functions ---------------------------------------------------
+
+// gets all the relvant data and passes that to the template engine
+function parseSummonerData(summoner) {
+  let parsedData = Object.assign({}, summoner.account);
+  let playerStats = [];
+  let id = summoner.account.accountId;
+
+  summoner.recentGames.forEach((game, index, array) => {
+    // find the player's participant id
+    let partId;
+    game.gameData.participantIdentities.forEach((participant)=>{
+      if (participant.player.accountId === summoner.account.accountId) {
+        partId = participant.participantId;
+      }
+    });
+
+    // find player's participant obj
+    let playerObj;
+    game.gameData.participants.forEach((participant)=>{
+      if (participant.participantId === partId) {
+        playerObj = participant;
+      }
+    });
+
+    // grab stats
+    let gameStats = {};
+    gameStats.championName = game.championName;
+    gameStats.queue = game.queue;
+    gameStats.lane = game.lane;
+
+    gameStats.win = playerObj.stats.win;
+    gameStats.spell1 = playerObj.spell1Id;
+    gameStats.spell2 = playerObj.spell2Id;
+    gameStats.item0 = playerObj.stats.item0;
+    gameStats.item1 = playerObj.stats.item1;
+    gameStats.item2 = playerObj.stats.item2;
+    gameStats.item3 = playerObj.stats.item3;
+    gameStats.item4 = playerObj.stats.item4;
+    gameStats.item5 = playerObj.stats.item5;
+    gameStats.item6 = playerObj.stats.item6;
+    gameStats.kills = playerObj.stats.kills;
+    gameStats.deaths = playerObj.stats.deaths;
+    gameStats.assists = playerObj.stats.assists;
+    gameStats.level = playerObj.stats.champLevel;
+    gameStats.cs = playerObj.stats.totalMinionsKilled;
+    gameStats.gold = playerObj.stats.goldEarned;
+
+    playerStats.push(gameStats);
+
+  });
+
+
+  parsedData.gameStats = playerStats;
+  // return summoner;
+  return parsedData;
+}
+
 // routes ---------------------------------------------------
 
 app.get('/', (req, res) => {
@@ -45,15 +103,15 @@ app.post('/search', (req, res) => {
 
   const name = req.body.name;
   const summoner = {
-    accountInfo: "",
+    account: "",
     recentGames: ""
   };
 
   // get summoner info
   fetch(SUMMONER_ENDPOINT(name)).then(res => res.json()).then(data => {
-    summoner.accountInfo = data;
+    summoner.account = data;
   }).then(() => {
-    fetch(MATCHLIST_ENDPOINT(summoner.accountInfo.accountId)).then(res => res.json()).then(data => {
+    fetch(MATCHLIST_ENDPOINT(summoner.account.accountId)).then(res => res.json()).then(data => {
       // filter recent matches to only store matches we care about
       summoner.recentGames = data.matches.filter((match, index, array) => match.queue <= 440 && match.queue >= 400 && index < 5);
       summoner.recentGames.forEach((match, index, array) => {
@@ -71,12 +129,13 @@ app.post('/search', (req, res) => {
         if (err) console.log('A request failed!');
         else {
           console.log('All requests complete!');
-          // res.render('search', summoner);
-          res.json(summoner);
+          let parsedData = parseSummonerData(summoner);
+          res.render('search', parsedData);
+          // res.json(parsedData);
         }
       });
     });
   });
 });
 
-app.listen(3000, () => console.log('We runnin baby!'));
+app.listen(3000, () => console.log('We runnin\'!'));
