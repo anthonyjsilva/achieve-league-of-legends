@@ -60,7 +60,7 @@ function parseSummonerData(summoner) {
     gameStats.queue = game.queue;
     gameStats.lane = game.lane;
 
-    gameStats.win = playerObj.stats.win;
+    gameStats.win = playerObj.stats.win ? 'Win' : 'Loss';
     gameStats.spell1 = playerObj.spell1Id;
     gameStats.spell2 = playerObj.spell2Id;
     gameStats.item0 = playerObj.stats.item0;

@@ -1,3 +1,14 @@
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   font-family: 'Source Sans Pro', sans-serif;
   display: flex;
@@ -9,12 +20,15 @@ body {
   background-attachment: fixed;
   color: lightgray;
   margin: 0;
-  margin-bottom: 80px;
-
+  /*margin-bottom: 80px;*/
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 180px;
 }
 
 header {
   flex-basis: 100%;
+  /*margin-bottom: 30px;*/
 }
 
 .banner {
@@ -77,13 +91,24 @@ img {
 #logo {
   font-family: 'Knewave', cursive;
   text-transform: uppercase;
-  color: indianred;
   font-size: 4em;
   margin-bottom: 10px;
+}
+#logo a{
   text-shadow: 2px 2px 17px #0c0c0c;
+
+  text-decoration: none;
+  color: indianred;
+}
+#logo a:hover {
+  text-shadow: none;
+  text-shadow: 2px 2px 17px rgba(12, 12, 12, 0.35);
+
+  position: relative;
+  top: 2px;
 }
 
-.back {
+.back-button {
   flex-basis: 50%;
   background: rgba(20, 20, 20, .7);
   /*width: 30%;*/
@@ -124,15 +149,44 @@ input[type="text"] {
   outline: none;
   font-size: 1em;
 }
+input[type="text"]:hover {
+  box-shadow: none;
+
+  position: relative;
+  top: 1px;
+}
+
+
+
 
 input[type="submit"] {
   font-family: 'Knewave', cursive;
-  color: black;
+  color: rgb(20, 20, 20);
   background-color: indianred;
   font-size: 20px;
   padding: 5px 10px;
+
 }
 
 input[type="submit"]:hover {
   box-shadow: none;
+  position: relative;
+  top: 1px;
+}
+
+
+footer {
+  /*flex-basis: 100%;*/
+  background: rgba(20, 20, 20, .7);
+  width: 100%;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+footer p {
+  margin: 20px auto;
+  width: 800px;
 }
