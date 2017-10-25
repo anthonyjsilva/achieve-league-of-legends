@@ -11,6 +11,7 @@ const express = require('express'),
   fetch = require('node-fetch'),
   mustacheExpress = require('mustache-express'),
   bodyParser = require('body-parser'),
+  async = require("async"),
   app = express();
 
 // setup
@@ -59,15 +60,21 @@ app.post('/search', (req, res) => {
         match.championName = CHAMPION_DATA.getName(match.champion);
       });
     }).then(() => {
-      summoner.recentGames.forEach((match, index, array) => {
+      // parallel async calls for each game
+      async.each(summoner.recentGames, function(match, callback) {
         fetch(MATCH_ENDPOINT(match.gameId)).then(res => res.json()).then(data => {
-          console.log(data);
           match.gameData = data;
+          callback();
         });
+        //TODO: some error handling here
+      }, function(err) {
+        if (err) console.log('A request failed!');
+        else {
+          console.log('All requests complete!');
+          // res.render('search', summoner);
+          res.json(summoner);
+        }
       });
-    }).then(() => {
-      res.render('search', summoner);
-      // res.json(summoner);
     });
   });
 });
