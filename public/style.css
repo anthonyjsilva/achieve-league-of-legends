@@ -34,10 +34,13 @@ header {
 .banner {
   background: rgba(20, 20, 20, .7);
   width: 100%;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   font-family: 'Knewave', cursive;
   margin: 40px 0;
   padding: 20px;
+  font-size: 2em;
+  
+  letter-spacing: .4em;
 }
 
 .icon-container {
@@ -109,15 +112,30 @@ img {
 }
 
 .back-button {
-  flex-basis: 50%;
+  /*flex-basis: 100%;*/
   background: rgba(20, 20, 20, .7);
-  /*width: 30%;*/
+  margin: auto;
+  width: 10%;
+  border-radius: 20px;
   text-align: center;
+  padding: 10px;
 }
+.back-button a{
+  text-decoration: none;
+  color: lightgray;
+}
+.back-button a:hover{
+  color: indianred;
+}
+
 .para {
   margin: 20px auto;
   width: 600px;
+  text-shadow: 1px 1px 10px #0c0c0c;
+
+
 }
+
 
 .list {
   display: flex;
@@ -179,7 +197,7 @@ footer {
   /*flex-basis: 100%;*/
   background: rgba(20, 20, 20, .7);
   width: 100%;
-
+  color: gray;
   position: absolute;
   right: 0;
   bottom: 0;
