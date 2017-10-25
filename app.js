@@ -60,16 +60,18 @@ function parseSummonerData(summoner) {
     gameStats.queue = game.queue;
     gameStats.lane = game.lane;
 
-    gameStats.win = playerObj.stats.win ? 'Win' : 'Loss';
+    gameStats.win = playerObj.stats.win;
     gameStats.spell1 = playerObj.spell1Id;
     gameStats.spell2 = playerObj.spell2Id;
-    gameStats.item0 = playerObj.stats.item0;
-    gameStats.item1 = playerObj.stats.item1;
-    gameStats.item2 = playerObj.stats.item2;
-    gameStats.item3 = playerObj.stats.item3;
-    gameStats.item4 = playerObj.stats.item4;
-    gameStats.item5 = playerObj.stats.item5;
-    gameStats.item6 = playerObj.stats.item6;
+
+    gameStats.items = [];
+    gameStats.items.push(playerObj.stats.item0);
+    gameStats.items.push(playerObj.stats.item1);
+    gameStats.items.push(playerObj.stats.item2);
+    gameStats.items.push(playerObj.stats.item3);
+    gameStats.items.push(playerObj.stats.item4);
+    gameStats.items.push(playerObj.stats.item5);
+    // gameStats.item6 = playerObj.stats.item6;
     gameStats.kills = playerObj.stats.kills;
     gameStats.deaths = playerObj.stats.deaths;
     gameStats.assists = playerObj.stats.assists;
