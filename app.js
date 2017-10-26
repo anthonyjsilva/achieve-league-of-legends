@@ -54,9 +54,9 @@ const summonerSpells = {
 };
 
 const queueTypes = {
-  "400": "5v5 Draft",
+  "400": "5v5 Draft Pick",
   "420": "5v5 Ranked Solo",
-  "430": "5v5 Blind",
+  "430": "5v5 Blind Pick",
   "440": "5v5 Ranked Flex",
 };
 
@@ -122,6 +122,7 @@ function parseSummonerData(summoner) {
     gameStats.level = playerObj.stats.champLevel;
     gameStats.cs = playerObj.stats.totalMinionsKilled;
     gameStats.gold = formatGold(playerObj.stats.goldEarned);
+    // gameStats.medals = getMedals(gameStats);
 
     playerStats.push(gameStats);
 

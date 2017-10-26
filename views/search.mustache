@@ -13,12 +13,12 @@
 
   <main>
     <div class="banner">
-      <img {{#rankColor}}class="profile-icon" style="border-color:{{rankColor}}{{/rankColor}}" src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{{profileIconId}}.png" alt="">
-      <h2>{{name}}</h2>
-      <h4>{{rank}}</h4>
+      <img {{#rankColor}} class="profile-icon" style="border-color:{{rankColor}}{{/rankColor}}" src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{{profileIconId}}.png" alt="">
+      <h2 class="summoner-name">{{name}}</h2>
+      <h4 class="summoner-rank">{{rank}}</h4>
     </div>
     <div class="matches-container">
-    {{#gameStats}}
+      {{#gameStats}}
         <div class="match-container">
           <div class="top-section">
             <div class="icon-container">
@@ -41,41 +41,33 @@
             {{/items}}
           </div>
           <div class="stats-container">
-            <span>level {{level}}</span>
-              <span>{{cs}} CS</span>
-              <span>{{gold}}</span>
-            </div>
             <div class="kda-container">
               <span>{{kills}} / {{deaths}} / {{assists}}</span>
               <span>{{kda}}</span>
             </div>
-          </div>
-          <div class="bottom-section">
-            <div class="win-container ">
-              <div class="">
-                {{time}}
-                {{#win}}<span class="win">WIN</span>{{/win}}
-                {{^win}}<span class="loss">LOSS</span>{{/win}}
-              </div>
-              <div class="">
-                {{queue}}
-              </div>
-            </div>
-            <div class="medals-container">
-              <div class="">
-                <img class="medal" src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/spell/FlashFrost.png" alt="">
-              </div>
-              <div class="">
-                <img class="medal" src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/spell/RocketGrab.png" alt="">
-              </div>
-              <div class="">
-                <img class="medal" src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/spell/Incinerate.png" alt="">
-              </div>
-            </div>
+            <span>level {{level}}</span>
+            <span>{{cs}} CS</span>
+            <span>{{gold}}</span>
           </div>
         </div>
+        <div class="bottom-section">
+          <div class="win-container ">
+            <div class="">
+              {{time}}
+              {{#win}}<span class="win">WIN</span>{{/win}}
+              {{^win}}<span class="loss">LOSS</span>{{/win}}
+            </div>
+            <div class="">
+              {{queue}}
+            </div>
+          </div>
+          <div class="medals-container">
+
+          </div>
+        </div>
+    </div>
     {{/gameStats}}
-  </div>
+    </div>
   </main>
   <div class="back-button">
     <a href="/">Back</a>
