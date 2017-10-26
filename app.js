@@ -54,9 +54,9 @@ const summonerSpells = {
 };
 
 const queueTypes = {
-  "400": "5v5 Draft Pick",
+  "400": "5v5 Draft",
   "420": "5v5 Ranked Solo",
-  "430": "5v5 Blind Pick",
+  "430": "5v5 Blind",
   "440": "5v5 Ranked Flex",
 };
 
@@ -65,8 +65,8 @@ const getSummonerSpellName = id => summonerSpells[id];
 const getQueueName = id => queueTypes[id];
 
 const formatGold = gold => (gold > 999) ? (gold / 1000).toFixed(1) + 'K' : gold;
-const getKDA = (k, d, a) => ((k + a) / d).toFixed(1) + " KDA";
-const formatTime = time => (time / 60).toFixed();
+const getKDA = (k, d, a) => (d === 0) ? "Perfect KDA" : ((k + a) / d).toFixed(1) + " KDA";
+const formatTime = time => (time / 60).toFixed() + 'm';
 
 // gets all the relvant data and passes that to the template engine
 function parseSummonerData(summoner) {

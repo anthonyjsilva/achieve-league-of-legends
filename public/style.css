@@ -36,7 +36,9 @@ body {
   min-height: 100%;
   padding-bottom: 180px;
 }
-
+.win-container {
+  flex-basis: 18%
+}
 header {
   flex-basis: 100%;
   /*margin-bottom: 30px;*/
@@ -89,6 +91,26 @@ header {
 .items-container img {
   width: 40px;
 }
+
+.medals-container {
+  /*flex-basis: 55%;*/
+  display: flex;
+  flex-wrap: wrap;
+  /*align-content: baseline;*/
+  justify-content: center;
+  padding-left: 10px;
+}
+.medals-container div {
+  /*flex-basis: 33%;*/
+  /*width: 30px;*/
+  padding-left: 10px;
+}
+.medals-container img {
+  width: 40px;
+  border-radius: 0px;
+}
+
+
 
 .spells-container {
   flex-basis: 5%;
@@ -175,7 +197,7 @@ img {
   flex-basis: 100%;
   display: flex;
   flex-wrap: wrap;
-  min-height: 100px;
+  min-height: 45px;
 }
 
 #subtitle {
