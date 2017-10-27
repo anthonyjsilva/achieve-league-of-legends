@@ -6,6 +6,7 @@ const BASE_API_URL = 'https://na1.api.riotgames.com/lol/';
 // imports
 const API_KEY = require('./apikey');
 const CHAMPION_DATA = require('./championData');
+const MEDAL_DATA = require('./medalsData');
 
 const express = require('express'),
   fetch = require('node-fetch'),
@@ -67,6 +68,30 @@ const getQueueName = id => queueTypes[id];
 const formatGold = gold => (gold > 999) ? (gold / 1000).toFixed(1) + 'K' : gold;
 const getKDA = (k, d, a) => (d === 0) ? "Perfect KDA" : ((k + a) / d).toFixed(1) + " KDA";
 const formatTime = time => (time / 60).toFixed() + 'm';
+const formatLane = lane => lane.charAt(0) + lane.slice(1).toLowerCase();
+
+const formatName = name => {
+  if (name === "MissFortune") {
+    return "Ms Fortune"
+  }
+  else {
+    return name;
+  }
+};
+
+function getMedals(data) {
+  let medals = [];
+
+  // speedrunner
+  if (data.time <= 22*60 && data.win)
+    medals.push(MEDAL_DATA.speedrunner);
+  if (data.level >= 15)
+    medals.push(MEDAL_DATA.ascended);
+  if (data.deaths === 0)
+    medals.push(MEDAL_DATA.invincible);
+
+  return medals;
+}
 
 // gets all the relvant data and passes that to the template engine
 function parseSummonerData(summoner) {
@@ -94,12 +119,14 @@ function parseSummonerData(summoner) {
     // grab stats
     let gameStats = {};
     gameStats.championName = game.championName;
+    gameStats.championNameFormatted = formatName(game.championName);
     gameStats.queue = game.queue;
-    gameStats.lane = game.lane;
+    gameStats.lane = formatLane(game.lane);
 
     gameStats.win = playerObj.stats.win;
     gameStats.queue = getQueueName(game.gameData.queueId);
-    gameStats.time = formatTime(game.gameData.gameDuration);
+    gameStats.time = game.gameData.gameDuration;
+    gameStats.timeFormatted = formatTime(game.gameData.gameDuration);
 
     gameStats.spell1 = getSummonerSpellName(playerObj.spell1Id);
     gameStats.spell2 = getSummonerSpellName(playerObj.spell2Id);;
@@ -122,7 +149,7 @@ function parseSummonerData(summoner) {
     gameStats.level = playerObj.stats.champLevel;
     gameStats.cs = playerObj.stats.totalMinionsKilled;
     gameStats.gold = formatGold(playerObj.stats.goldEarned);
-    // gameStats.medals = getMedals(gameStats);
+    gameStats.medals = getMedals(gameStats);
 
     playerStats.push(gameStats);
 

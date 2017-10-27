@@ -45,6 +45,11 @@ img {
   border-radius: 100px;
 }
 
+hr {
+  width: 100%;
+  border: 1px solid gray;
+}
+
 #subtitle {
   margin: 0 auto 20px auto;
   text-shadow: 2px 2px 20px #000000;
@@ -117,10 +122,13 @@ img {
   text-align: center;
 }
 
-.win-container {}
+.win-container {
+  color: gray;
+}
 
 .icon-container {
   position: relative;
+
 }
 
 .match-right-half {
@@ -135,6 +143,7 @@ img {
   flex-wrap: wrap;
   flex-basis: 100%;
   justify-content: space-between;
+  padding: 5px;
 }
 
 .spells-container {
@@ -158,6 +167,7 @@ img {
   align-content: baseline;
   justify-content: center;
   text-align: center;
+  flex-basis: 30%;
 }
 
 .items-container div {
@@ -170,8 +180,9 @@ img {
 }
 
 .match-medals {
-  height: 50px;
   width: 100%;
+  padding: 5px;
+  display: flex;
 }
 
 .win {
@@ -184,6 +195,8 @@ img {
 
 .win-border {
   border: 4px solid #97cd5c;
+  /*box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.68);*/
+  
 }
 
 .loss-border {
@@ -222,37 +235,38 @@ img {
   margin-bottom: 15px;
   color: gray;
 }
+.medals-header {
+  width: 100%;
+  color: gray;
+  margin-bottom: 10px;
+}
 
 .champion-header {
-  color: gray;
+  color: #a5a2a2;
   width: 100%;
   font-family: Knewave;
   font-size: 1.5em;
-  letter-spacing: .2em;
+  letter-spacing: .1em;
 }
 
 .queue-container {
-  color:gray;
+  color: gray;
 }
 
-.medals-container {
-  /*flex-basis: 55%;*/
-  display: flex;
-  flex-wrap: wrap;
-  /*align-content: baseline;*/
-  justify-content: center;
-  padding-left: 10px;
+.medal-container {
+  margin-right: 15px;
 }
 
 .medals-container div {
   /*flex-basis: 33%;*/
   /*width: 30px;*/
-  padding-left: 10px;
+  /*padding-left: 10px;*/
 }
 
-.medals-container img {
+.medal-container img {
   width: 40px;
-  border-radius: 0px;
+  border-radius: 100px;
+  border: 2px outset #88671d;
 }
 
 .lane {
