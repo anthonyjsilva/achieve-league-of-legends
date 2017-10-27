@@ -1,80 +1,74 @@
-<!DOCTYPE html>
-<html>
+{{> header}}
 
-<head>
-  <meta charset="utf-8">
-  <title>Achieve</title>
-  <link rel="stylesheet" href="/style.css">
-  <link href="https://fonts.googleapis.com/css?family=Knewave|Source+Sans+Pro" rel="stylesheet">
-</head>
-
-<body>
-  {{> header}}
-
-  <main>
-    <div class="banner">
-      <img {{#rankColor}} class="profile-icon" style="border-color:{{rankColor}}{{/rankColor}}" src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{{profileIconId}}.png" alt="">
-      <h2 class="summoner-name">{{name}}</h2>
-      <h4 class="summoner-rank">{{rank}}</h4>
-    </div>
-    <div class="matches-container">
-      {{#gameStats}}
-        <div class="match-container">
-          <div class="top-section">
-            <div class="icon-container">
-              <img class="championIcon {{#win}}win-border{{/win}}{{^win}}loss-border{{/win}}" src="https://ddragon.leagueoflegends.com/cdn/7.20.3/img/champion/{{championName}}.png" alt="champion icon">
-              <span class="lane">{{lane}}</span >
+<main>
+  <div class="banner">
+    <img {{#rankColor}} class="profile-icon" style="border-color:{{rankColor}}{{/rankColor}}" src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{{profileIconId}}.png" alt="">
+    <h2 class="summoner-name">{{name}}</h2>
+    <h4 class="summoner-rank">{{rank}}</h4>
+  </div>
+  <div class="matches-container">
+    {{#gameStats}}
+      <div class="match-container">
+        <div class="match-left-half">
+          <span class="champion-header">{{championName}}</span>
+          <div class="icon-container">
+            <img class="championIcon {{#win}}win-border{{/win}}{{^win}}loss-border{{/win}}" src="https://ddragon.leagueoflegends.com/cdn/7.20.3/img/champion/{{championName}}.png" alt="champion icon">
+            <span class="lane" style="background-color:{{#win}}#97cd5c{{/win}}{{^win}}indinared{{/win}}">{{lane}}</span>
           </div>
-          <div class="spells-container">
+          <div class="win-container ">
             <div class="">
-              <img  src="http://ddragon.leagueoflegends.com/cdn/7.20.3/img/spell/{{spell1}}.png" alt="">
+              {{time}}
+              {{#win}}<span class="win">WIN</span>{{/win}}
+            {{^win}}<span class="loss">LOSS</span>{{/win}}
+          </div>
+          <div class="queue-container">
+            {{queue}}
+          </div>
+        </div>
+      </div>
+      <div class="match-right-half">
+        <div class="match-stats">
+          <div class="spells-container">
+            <span class="category-header">Spells</span>
+            <div class="">
+              <img src="http://ddragon.leagueoflegends.com/cdn/7.20.3/img/spell/{{spell1}}.png" alt="">
             </div>
             <div class="">
               <img src="http://ddragon.leagueoflegends.com/cdn/7.20.3/img/spell/{{spell2}}.png" alt="">
             </div>
           </div>
           <div class="items-container">
+            <span class="category-header">Items</span>
             {{#items}}
-            <div class="">
-              <img src="http://ddragon.leagueoflegends.com/cdn/7.20.3/img/item/{{.}}.png" alt="">
-            </div>
+              <div class="">
+                <img src="http://ddragon.leagueoflegends.com/cdn/7.20.3/img/item/{{.}}.png" alt="">
+              </div>
             {{/items}}
           </div>
+          <div class="kda-container">
+            <span class="category-header">Score</span>
+            <span>{{kills}} / {{deaths}} / {{assists}}</span>
+            <span>{{kda}}</span>
+          </div>
           <div class="stats-container">
-            <div class="kda-container">
-              <span>{{kills}} / {{deaths}} / {{assists}}</span>
-              <span>{{kda}}</span>
-            </div>
+            <span class="category-header">Farm</span>
             <span>level {{level}}</span>
             <span>{{cs}} CS</span>
             <span>{{gold}}</span>
           </div>
         </div>
-        <div class="bottom-section">
-          <div class="win-container ">
-            <div class="">
-              {{time}}
-              {{#win}}<span class="win">WIN</span>{{/win}}
-              {{^win}}<span class="loss">LOSS</span>{{/win}}
-            </div>
-            <div class="">
-              {{queue}}
-            </div>
-          </div>
+        <div class="match-medals">
           <div class="medals-container">
 
           </div>
         </div>
-    </div>
-    {{/gameStats}}
-    </div>
-  </main>
-  <div class="back-button">
-    <a href="/">Back</a>
+      </div>
   </div>
+  {{/gameStats}}
+  </div>
+</main>
+<div class="back-button">
+  <a href="/">Back</a>
+</div>
 
-  {{> footer}}
-
-</body>
-
-</html>
+{{> footer}}
