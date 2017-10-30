@@ -62,7 +62,10 @@ function parseSummonerData(summoner) {
     gameStats.spell2 = HELPER.getSummonerSpellName(playerObj.spell2Id);;
 
     parsedData.rank = playerObj.highestAchievedSeasonTier;
-    parsedData.rankColor = HELPER.getRankColor(playerObj.highestAchievedSeasonTier);
+    if (playerObj.highestAchievedSeasonTier !== 'UNRANKED') {
+
+      parsedData.rankColor = HELPER.getRankColor(playerObj.highestAchievedSeasonTier);
+    }
 
     gameStats.items = [
       playerObj.stats.item0,

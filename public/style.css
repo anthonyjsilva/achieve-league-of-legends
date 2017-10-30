@@ -3,7 +3,8 @@
   --light-yellow: #d0d082;
   --win-color: #97cd5c;
   --loss-color: indianred;
-  --highlight-color: #d14a55;
+  /*--highlight-color: #d14a55;*/
+  --highlight-color: indianred;
 }
 
 html {
@@ -62,8 +63,8 @@ header div a {
 }
 
 header div a:hover {
-  position: relative;
-  top: 2px;
+  /*position: relative;
+  top: 2px;*/
   color: indianred;
 }
 
@@ -89,15 +90,28 @@ hr {
 }
 
 #logo {
-  font-family: 'Knewave', cursive;
-  text-transform: uppercase;
   font-size: 2.5em;
-  letter-spacing: 10px;
   text-align: left;
   margin-left: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+#logo span {
+  font-size: .4em;
+  text-transform: none;
+  position: relative;
+  top: -15px;
+  letter-spacing: 1px;
 }
 
 #logo a {
+  position: relative;
+  top: -5px;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  font-family: 'Knewave', cursive;
   /*text-shadow: 2px 2px 17px #0c0c0c;*/
   text-decoration: none;
   color: indianred;
@@ -106,23 +120,21 @@ hr {
 #logo a:hover {
   text-shadow: none;
   text-shadow: 2px 2px 17px rgba(12, 12, 12, 0.35);
-  position: relative;
-  top: 2px;
+  color: white;
 }
 
 .profile-icon {
+  position: relative;
   border-width: 10px;
-  border-style: outset;
+  border-style: inset;
 }
 
 .banner {
   background: rgba(20, 20, 20, 1);
   width: 100%;
-  font-family: 'Knewave', cursive;
   margin-bottom: 40px;
   padding: 20px;
   font-size: 2em;
-  letter-spacing: .2em;
 }
 
 .matches-container {
@@ -137,12 +149,12 @@ hr {
   flex-basis: 100%;
   background: rgba(20, 20, 20, 1);
   padding: 10px;
-  border-radius: 20px;
+  /*border-radius: 20px;*/
   margin-bottom: 20px;
   position: relative;
   display: flex;
   /*flex-wrap: wrap;*/
-  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.68);
+  /*box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.68);*/
 }
 
 .match-left-half {
@@ -233,8 +245,27 @@ hr {
   border: 4px solid indianred;
 }
 
-.summoner-name, .summoner-rank {
+.summoner-name {
   margin: 0 auto;
+  font-family: 'Knewave', cursive;
+  letter-spacing: .2em;
+}
+
+.profile-icon-container {
+  position: relative;
+  margin: auto;
+  width: 150px;
+}
+
+.summoner-rank {
+  position: absolute;
+  right: 45px;
+  bottom: -15px;
+  color: black;
+  /* background: rgb(156, 75, 75); */
+  padding: 5px;
+  font-size: .6em;
+  border-radius: 10px;
 }
 
 .stats-container {
@@ -348,9 +379,11 @@ hr {
 }
 
 .para {
+  font-size: 1.3em;
   margin: 20px auto;
   width: 600px;
   text-shadow: 1px 1px 10px #0c0c0c;
+  line-height: 30px;
 }
 
 .list {
@@ -367,7 +400,7 @@ hr {
 
 .splash {
   width: 100%;
-  height: 500px;
+  min-height: 550px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -383,19 +416,31 @@ hr {
   /*flex-basis: 50%;*/
   background: rgba(20, 20, 20, .95);
   /*margin: auto;*/
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   padding: 20px;
-  height: 200px;
+  min-height: 300px;
   margin-right: 100px;
+}
+
+.splash-info h2, .splash-form h2 {
+  font-family: 'Knewave', cursive;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  /*font-size: 1.5em;*/
+}
+
+.para a {
+    text-decoration: none;
+    color: var(--highlight-color);
 }
 
 .splash-form {
   /*flex-grow: 1;*/
   background: rgba(20, 20, 20, .95);
   /*margin: auto;*/
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   padding: 20px;
-  height: 200px;
+  height: 300px;
 }
 
 form {
@@ -408,7 +453,7 @@ input {
   padding: 10px;
   border: 0;
   margin-bottom: 10px;
-  box-shadow: 3px 5px 5px #251d1d;
+  /*box-shadow: 3px 5px 5px #251d1d;*/
 }
 
 input[type="text"] {
@@ -419,8 +464,8 @@ input[type="text"] {
 
 input[type="text"]:hover {
   box-shadow: none;
-  position: relative;
-  top: 1px;
+  /*position: relative;
+  top: 1px;*/
 }
 
 input[type="submit"] {
@@ -433,13 +478,13 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   box-shadow: none;
-  position: relative;
-  top: 1px;
+  color: white;
+  /*background-color: black;*/
 }
 
 footer {
   font-size: .8em;
-  padding: 10px 0px;
+  padding: 30px 0px;
   background: rgba(20, 20, 20, 1);
   width: 100%;
   color: gray;
@@ -450,6 +495,10 @@ footer {
 }
 
 footer p {
-  margin: 20px auto;
+  margin: 10px auto;
   width: 1000px;
+}
+
+.highlight-red {
+  color: var(--highlight-color);
 }
