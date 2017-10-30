@@ -1,14 +1,23 @@
 {{> header}}
 
 <main>
-  <form class="" action="/search" method="post">
-    <input type="text" name="name" value="" autofocus placeholder="Summoner Name...">
-    <br>
-    <input type="submit" name="" value="SEARCH">
-  </form>
-  <p class="para">
-    Achieve is a web app built using the Riot Games Developer API that allows you to track achievements for your League of Legends account. It is light-weight, minimalistic, and mobile friendly, that shows achievements from recent games.
-  </p>
+  <div class="splash">
+    <div class="splash-info">
+      <h2>How it works</h2>
+      <p class="para">
+        Achieve is a web app built using the Riot Games Developer API that allows you to track achievements for your League of Legends account. It is light-weight, minimalistic, and mobile friendly, that shows achievements from recent games.
+      </p>
+    </div>
+    <div class="splash-form">
+      <h2>Search for a Summoner</h2>
+      <form class="" action="/search" method="post">
+        <input type="text" name="name" value="" autofocus placeholder="Summoner Name...">
+        <br>
+        <input type="submit" name="" value="SEARCH">
+      </form>
+    </div>
+
+  </div>
 </main>
 
 {{> footer}}
