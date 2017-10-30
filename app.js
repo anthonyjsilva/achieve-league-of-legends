@@ -1,13 +1,12 @@
 // setup ---------------------------------------------------
 
-// riot games api
-const BASE_API_URL = 'https://na1.api.riotgames.com/lol/';
+// custom imports
+  const CHAMPION_DATA = require('./models/championData'),
+  HELPER = require('./models/helper'),
+  ENDPOINTS = require('./models/endpoints'),
+  MEDALS = require('./models/medals');
 
-// imports
-const API_KEY = require('./apikey');
-const CHAMPION_DATA = require('./championData');
-const MEDAL_DATA = require('./medalsData');
-
+// node_modules imports
 const express = require('express'),
   fetch = require('node-fetch'),
   mustacheExpress = require('mustache-express'),
@@ -23,75 +22,6 @@ app.set('views', './views')
 app.use(express.static('./public/'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-
-// url request builders ---------------------------------------------------
-
-const SUMMONER_ENDPOINT = name => `${BASE_API_URL}summoner/v3/summoners/by-name/${name}?api_key=${API_KEY}`;
-const MATCHLIST_ENDPOINT = id => `${BASE_API_URL}match/v3/matchlists/by-account/${id}/recent?api_key=${API_KEY}`;
-const MATCH_ENDPOINT = gameId => `${BASE_API_URL}match/v3/matches/${gameId}?api_key=${API_KEY}`;
-
-// my functions ---------------------------------------------------
-const rankColors = {
-  bronze: "#bd8e53",
-  silver: "#d0cdca",
-  gold: "#e0b519",
-  platinum: "#74b39f",
-  diamond: "#6e9ce0",
-  master: "#bd8e53",
-  challenger: "#bd8e53",
-};
-
-const summonerSpells = {
-  "1" : "SummonerBoost",
-  "3" : "SummonerExhaust",
-  "4" : "SummonerFlash",
-  "6" : "SummonerHaste",
-  "7" : "SummonerHeal",
-  "11" : "SummonerSmite",
-  "14" : "SummonerDot",
-  "13" : "SummonerMana",
-  "12" : "SummonerTeleport",
-  "21" : "SummonerBarrier",
-};
-
-const queueTypes = {
-  "400": "5v5 Draft Pick",
-  "420": "5v5 Ranked Solo",
-  "430": "5v5 Blind Pick",
-  "440": "5v5 Ranked Flex",
-};
-
-const getRankColor = rank => rankColors[rank.toLowerCase()];
-const getSummonerSpellName = id => summonerSpells[id];
-const getQueueName = id => queueTypes[id];
-
-const formatGold = gold => (gold > 999) ? (gold / 1000).toFixed(1) + 'K' : gold;
-const getKDA = (k, d, a) => (d === 0) ? "Perfect KDA" : ((k + a) / d).toFixed(1) + " KDA";
-const formatTime = time => (time / 60).toFixed() + 'm';
-const formatLane = lane => lane.charAt(0) + lane.slice(1).toLowerCase();
-
-const formatName = name => {
-  if (name === "MissFortune") {
-    return "Ms Fortune"
-  }
-  else {
-    return name;
-  }
-};
-
-function getMedals(data) {
-  let medals = [];
-
-  // speedrunner
-  if (data.time <= 22*60 && data.win)
-    medals.push(MEDAL_DATA.speedrunner);
-  if (data.level >= 15)
-    medals.push(MEDAL_DATA.ascended);
-  if (data.deaths === 0)
-    medals.push(MEDAL_DATA.invincible);
-
-  return medals;
-}
 
 // gets all the relvant data and passes that to the template engine
 function parseSummonerData(summoner) {
@@ -119,50 +49,47 @@ function parseSummonerData(summoner) {
     // grab stats
     let gameStats = {};
     gameStats.championName = game.championName;
-    gameStats.championNameFormatted = formatName(game.championName);
+    gameStats.championNameFormatted = HELPER.formatName(game.championName);
     gameStats.queue = game.queue;
-    gameStats.lane = formatLane(game.lane);
+    gameStats.lane = HELPER.formatLane(game.lane);
 
     gameStats.win = playerObj.stats.win;
-    gameStats.queue = getQueueName(game.gameData.queueId);
+    gameStats.queue = HELPER.getQueueName(game.gameData.queueId);
     gameStats.time = game.gameData.gameDuration;
-    gameStats.timeFormatted = formatTime(game.gameData.gameDuration);
+    gameStats.timeFormatted = HELPER.formatTime(game.gameData.gameDuration);
 
-    gameStats.spell1 = getSummonerSpellName(playerObj.spell1Id);
-    gameStats.spell2 = getSummonerSpellName(playerObj.spell2Id);;
+    gameStats.spell1 = HELPER.getSummonerSpellName(playerObj.spell1Id);
+    gameStats.spell2 = HELPER.getSummonerSpellName(playerObj.spell2Id);;
 
     parsedData.rank = playerObj.highestAchievedSeasonTier;
-    parsedData.rankColor = getRankColor(playerObj.highestAchievedSeasonTier);
+    parsedData.rankColor = HELPER.getRankColor(playerObj.highestAchievedSeasonTier);
 
-    gameStats.items = [];
-    gameStats.items.push(playerObj.stats.item0);
-    gameStats.items.push(playerObj.stats.item1);
-    gameStats.items.push(playerObj.stats.item2);
-    gameStats.items.push(playerObj.stats.item3);
-    gameStats.items.push(playerObj.stats.item4);
-    gameStats.items.push(playerObj.stats.item5);
-    // gameStats.item6 = playerObj.stats.item6;
+    gameStats.items = [
+      playerObj.stats.item0,
+      playerObj.stats.item1,
+      playerObj.stats.item2,
+      playerObj.stats.item3,
+      playerObj.stats.item4,
+      playerObj.stats.item5
+    ].filter( item => item !== 0);
+
     gameStats.kills = playerObj.stats.kills;
     gameStats.deaths = playerObj.stats.deaths;
     gameStats.assists = playerObj.stats.assists;
-    gameStats.kda = getKDA(gameStats.kills, gameStats.deaths, gameStats.assists);
+    gameStats.kda = HELPER.getKDA(gameStats.kills, gameStats.deaths, gameStats.assists);
     gameStats.level = playerObj.stats.champLevel;
     gameStats.cs = playerObj.stats.totalMinionsKilled;
-    gameStats.gold = formatGold(playerObj.stats.goldEarned);
-    gameStats.medals = getMedals(gameStats);
+    gameStats.gold = HELPER.formatGold(playerObj.stats.goldEarned);
+    gameStats.medals = MEDALS.getMedals(gameStats);
 
     playerStats.push(gameStats);
-
   });
-
-
   parsedData.gameStats = playerStats;
   // return summoner;
   return parsedData;
 }
 
 // routes ---------------------------------------------------
-
 app.get('/', (req, res) => {
   res.render('index');
 });
@@ -182,10 +109,10 @@ app.post('/search', (req, res) => {
   };
 
   // get summoner info
-  fetch(SUMMONER_ENDPOINT(name)).then(res => res.json()).then(data => {
+  fetch(ENDPOINTS.SUMMONER_ENDPOINT(name)).then(res => res.json()).then(data => {
     summoner.account = data;
   }).then(() => {
-    fetch(MATCHLIST_ENDPOINT(summoner.account.accountId)).then(res => res.json()).then(data => {
+    fetch(ENDPOINTS.MATCHLIST_ENDPOINT(summoner.account.accountId)).then(res => res.json()).then(data => {
       // filter recent matches to only store matches we care about
       summoner.recentGames = data.matches.filter((match, index, array) => match.queue <= 440 && match.queue >= 400 && index < 5);
       summoner.recentGames.forEach((match, index, array) => {
@@ -194,7 +121,7 @@ app.post('/search', (req, res) => {
     }).then(() => {
       // parallel async calls for each game
       async.each(summoner.recentGames, function(match, callback) {
-        fetch(MATCH_ENDPOINT(match.gameId)).then(res => res.json()).then(data => {
+        fetch(ENDPOINTS.MATCH_ENDPOINT(match.gameId)).then(res => res.json()).then(data => {
           match.gameData = data;
           callback();
         });

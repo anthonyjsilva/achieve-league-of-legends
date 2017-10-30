@@ -1,7 +1,7 @@
 const BASE_URL = 'http://ddragon.leagueoflegends.com/cdn/7.20.3/img/';
 
 // array of medals
-const MEDALS = {
+const MEDAL_DATA = {
   speedrunner : {
     name: "Speed Runner",
     info: "Win in under 22 minutes.",
@@ -18,4 +18,22 @@ const MEDALS = {
     image: BASE_URL + "passive/ViPassive.png",
   },
 };
-module.exports = MEDALS;
+
+function getMedals(data) {
+  let medals = [];
+  // fast win
+  if (data.time <= 24*60 && data.win)
+    medals.push(MEDAL_DATA.speedrunner);
+  // max level
+  if (data.level >= 12)
+    medals.push(MEDAL_DATA.ascended);
+  // no deaths
+  if (data.deaths === 0)
+    medals.push(MEDAL_DATA.invincible);
+
+  return medals;
+}
+
+module.exports = {
+  getMedals: getMedals,
+};
