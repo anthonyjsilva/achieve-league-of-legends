@@ -329,7 +329,7 @@ hr {
 .medal-container img {
   width: 40px;
   border-radius: 100px;
-  border: 2px outset #88671d;
+  border: 2px outset #d4ac50;
 }
 
 .lane {
@@ -357,14 +357,13 @@ hr {
 }
 
 .back-button {
-  /*flex-basis: 100%;*/
-  background: rgba(20, 20, 20, .7);
+  background: rgba(20, 20, 20, 1);
   margin: auto;
   width: 10%;
-  border-radius: 20px;
+  /*border-radius: 20px;*/
   text-align: center;
   padding: 10px;
-  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.68);
+  margin-bottom: 30px;
 }
 
 .back-button a {
@@ -372,11 +371,9 @@ hr {
   color: lightgray;
 }
 
-.back-button:hover {
+.back-button a:hover {
   color: indianred;
-  position: relative;
-  top: 2px;
-  box-shadow: none;
+
 }
 
 .para {

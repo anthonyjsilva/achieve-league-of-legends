@@ -47,7 +47,7 @@ function parseSummonerData(summoner) {
     });
 
     // grab stats
-    let gameStats = {};
+    let gameStats = {partId: partId};
     gameStats.championName = game.championName;
     gameStats.championNameFormatted = HELPER.formatName(game.championName);
     gameStats.queue = game.queue;
@@ -83,6 +83,8 @@ function parseSummonerData(summoner) {
     gameStats.level = playerObj.stats.champLevel;
     gameStats.cs = playerObj.stats.totalMinionsKilled;
     gameStats.gold = HELPER.formatGold(playerObj.stats.goldEarned);
+    gameStats.firstBloodKill = playerObj.stats.firstBloodKill;
+    gameStats.firstTowerKill = playerObj.stats.firstTowerKill;
     gameStats.medals = MEDALS.getMedals(gameStats);
 
     playerStats.push(gameStats);
@@ -95,6 +97,14 @@ function parseSummonerData(summoner) {
 // routes ---------------------------------------------------
 app.get('/', (req, res) => {
   res.render('index');
+});
+
+app.get('/list', (req, res) => {
+  res.render('list');
+});
+
+app.get('/about', (req, res) => {
+  res.render('about');
 });
 
 /*
@@ -135,7 +145,7 @@ app.post('/search', (req, res) => {
           console.log('All requests complete!');
           let parsedData = parseSummonerData(summoner);
           res.render('search', parsedData);
-          // res.json(parsedData);
+          // res.json(summoner);
         }
       });
     });
