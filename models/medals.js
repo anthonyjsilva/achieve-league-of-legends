@@ -4,27 +4,27 @@ const BASE_URL = 'http://ddragon.leagueoflegends.com/cdn/7.20.3/img/';
 const MEDAL_DATA_ARRAY = [
   {
     name: "Speed Runner",
-    info: "Win in under 22 minutes.",
+    info: "Win in under 22 minutes",
     image: BASE_URL + "spell/ZileanW.png",
   },
   {
     name: "Ascended",
-    info: "Reach max level.",
+    info: "Reach max level",
     image: BASE_URL + "passive/Zilean_Passive.png",
   },
   {
     name: "Invincible",
-    info: "End the game without dying.",
+    info: "End the game without dying",
     image: BASE_URL + "passive/ViPassive.png",
   },
   {
     name: "First Blood!",
-    info: "Get first blood.",
+    info: "Get first blood",
     image: BASE_URL + "passive/Darius_PassiveBuff.png",
   },
   {
-    name: "First Tower!",
-    info: "Destroy the first tower.",
+    name: "Demolition",
+    info: "Destroy the first tower",
     image: BASE_URL + "spell/JarvanIVDemacianStandard.png",
   },
 ];
@@ -32,27 +32,27 @@ const MEDAL_DATA_ARRAY = [
 const MEDAL_DATA = {
   speedRunner : {
     name: "Speed Runner",
-    info: "Win in under 22 minutes.",
+    info: "Win in under 22 minutes",
     image: BASE_URL + "spell/ZileanW.png",
   },
   ascended : {
     name: "Ascended",
-    info: "Reach max level.",
+    info: "Reach max level",
     image: BASE_URL + "passive/Zilean_Passive.png",
   },
   invincible : {
     name: "Invincible",
-    info: "End the game without dying.",
+    info: "End the game without dying",
     image: BASE_URL + "passive/ViPassive.png",
   },
   firstBloodKill: {
     name: "First Blood!",
-    info: "Get first blood.",
+    info: "Get first blood",
     image: BASE_URL + "passive/Darius_PassiveBuff.png",
   },
   firstTowerKill: {
-    name: "First Tower!",
-    info: "Destroy the first tower.",
+    name: "Demolition",
+    info: "Destroy the first tower",
     image: BASE_URL + "spell/JarvanIVDemacianStandard.png",
   },
 };

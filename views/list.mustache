@@ -4,20 +4,16 @@
   <div class="splash">
     <div class="list-container">
       <h2>Achievements</h2>
-      <ul>
-
+      <div class="medal-list-container">
         {{#medals}}
-        <li>
-          <img src="{{image}}" alt="">
-          <br>
-        <b>{{name}}</b> - {{info}}
-        </li>
-        <br>
-        <br>
-        
-
+          <div class="medal">
+            <img class="medal-list-img" src="{{image}}" alt="">
+            <br>
+            <div class="medal-list-title">{{name}}</div>
+            <div class="">{{info}}</div>
+          </div>
         {{/medals}}
-      </ul>
+      </div>
 
     </div>
   </div>
