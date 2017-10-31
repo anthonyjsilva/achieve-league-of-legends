@@ -100,7 +100,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/list', (req, res) => {
-  res.render('list');
+  res.render('list', {medals: MEDALS.medals});
 });
 
 app.get('/about', (req, res) => {

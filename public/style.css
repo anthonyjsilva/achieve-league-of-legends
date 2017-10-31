@@ -373,7 +373,6 @@ hr {
 
 .back-button a:hover {
   color: indianred;
-
 }
 
 .para {
@@ -456,7 +455,6 @@ input {
   padding: 10px;
   border: 0;
   margin-bottom: 10px;
-
   /*box-shadow: 3px 5px 5px #251d1d;*/
 }
 
@@ -501,4 +499,29 @@ footer p {
 
 .highlight-red {
   color: var(--highlight-color);
+}
+
+.list-container {
+  width: 60%;
+  background: rgba(20, 20, 20, .95);
+  margin: 40px auto;
+  padding: 20px;
+}
+.list-container ul {
+  list-style: none;
+  padding: 0px;
+}
+.about-container {
+  padding: 20px;
+
+  width: 60%;
+  background: rgba(20, 20, 20, .95);
+  margin: 40px auto;
+}
+.list-container h2, .about-container h2 {
+  font-family: 'Knewave', cursive;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-top: 0;
+  /*font-size: 1.5em;*/
 }
