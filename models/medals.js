@@ -22,10 +22,10 @@ const MEDAL_DATA = {
 function getMedals(data) {
   let medals = [];
   // fast win
-  if (data.time <= 24*60 && data.win)
+  if (data.time <= 22*60 && data.win)
     medals.push(MEDAL_DATA.speedrunner);
   // max level
-  if (data.level >= 12)
+  if (data.level >= 18)
     medals.push(MEDAL_DATA.ascended);
   // no deaths
   if (data.deaths === 0)

@@ -92,7 +92,8 @@ hr {
 #logo {
   font-size: 2.5em;
   text-align: left;
-  margin-left: 10%;
+  margin-left: 11%;
+  margin-right: auto;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -382,7 +383,6 @@ hr {
   font-size: 1.3em;
   margin: 20px auto;
   width: 600px;
-  text-shadow: 1px 1px 10px #0c0c0c;
   line-height: 30px;
 }
 
@@ -402,12 +402,17 @@ hr {
   width: 100%;
   min-height: 550px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
   /*background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg');
   background-repeat: no-repeat;
   background-size: cover;*/
+}
+
+.splash-container {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
 }
 
 .splash-info {
@@ -426,12 +431,13 @@ hr {
   font-family: 'Knewave', cursive;
   letter-spacing: 5px;
   text-transform: uppercase;
+  margin-top: 0;
   /*font-size: 1.5em;*/
 }
 
 .para a {
-    text-decoration: none;
-    color: var(--highlight-color);
+  text-decoration: none;
+  color: var(--highlight-color);
 }
 
 .splash-form {
@@ -440,7 +446,7 @@ hr {
   /*margin: auto;*/
   /*border-radius: 5px;*/
   padding: 20px;
-  height: 300px;
+  margin-bottom: auto;
 }
 
 form {
@@ -453,6 +459,7 @@ input {
   padding: 10px;
   border: 0;
   margin-bottom: 10px;
+
   /*box-shadow: 3px 5px 5px #251d1d;*/
 }
 
@@ -464,11 +471,9 @@ input[type="text"] {
 
 input[type="text"]:hover {
   box-shadow: none;
-  /*position: relative;
-  top: 1px;*/
 }
 
-input[type="submit"] {
+.submit-button {
   font-family: 'Knewave', cursive;
   color: rgb(20, 20, 20);
   background-color: indianred;
@@ -476,14 +481,12 @@ input[type="submit"] {
   padding: 5px 10px;
 }
 
-input[type="submit"]:hover {
-  box-shadow: none;
+.submit-button:hover {
   color: white;
-  /*background-color: black;*/
 }
 
 footer {
-  font-size: .8em;
+  font-size: .9em;
   padding: 30px 0px;
   background: rgba(20, 20, 20, 1);
   width: 100%;
