@@ -3,9 +3,7 @@ Capstone project created to demonstrate both frontend and backend web developmen
 
 !["screenshot"](screenshots/sc1.png "screenshot")
 
->Achieve is a fan site that brings various extra achievements to the popular game, "League of Legends", providing players additional incentives to play well.
-
->By searching their account names, players can view awards earned for recent games.
+>Achieve is a fan site that brings various extra achievements to the popular game, "League of Legends", providing players additional incentives to play well. By searching their account names, players can view awards earned for recent games.
 
 
 ### About
@@ -24,8 +22,8 @@ Achieve is built using the Riot Games Developer API and runs in a Node environme
 - [ ] live game lookup
 
 ### Design sketches
-<img src="screenshots/nb1.jpg" width="250" title="Design sketch">
-<img src="screenshots/nb2.jpg" width="250" title="Design sketch">
+<img src="screenshots/nb1.jpg" width="500" title="Design sketch">
+<img src="screenshots/nb2.jpg" width="500" title="Design sketch">
 <img src="screenshots/nb3.jpg" width="250" title="Design sketch">
 
 ### Old Screenshot
