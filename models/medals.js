@@ -1,4 +1,5 @@
 const BASE_URL = 'http://ddragon.leagueoflegends.com/cdn/7.20.3/img/';
+const ITEM_BASE_URL = 'http://ddragon.leagueoflegends.com/cdn/7.20.3/img/';
 
 // array of medals
 const MEDAL_DATA_ARRAY = [
@@ -26,6 +27,26 @@ const MEDAL_DATA_ARRAY = [
     name: "Demolition",
     info: "Destroy the first tower",
     image: BASE_URL + "spell/JarvanIVDemacianStandard.png",
+  },
+  {
+    name: "Unstoppable",
+    info: "Get 3 kills without dying",
+    image: BASE_URL + "spell/UndyingRage.png",
+  },
+  {
+    name: "Scout",
+    info: "Place 10 wards",
+    image: ITEM_BASE_URL + "item/3340.png",
+  },
+  {
+    name: "Rich",
+    info: "Earn 15K gold",
+    image: BASE_URL + "passive/Draven_passive.png",
+  },
+  {
+    name: "Carnivore",
+    info: "Kill 100 jungle monsters",
+    image: BASE_URL + "spell/TahmKenchW.png",
   },
 ];
 
@@ -55,6 +76,26 @@ const MEDAL_DATA = {
     info: "Destroy the first tower",
     image: BASE_URL + "spell/JarvanIVDemacianStandard.png",
   },
+  largestKillingSpree: {
+    name: "Unstoppable",
+    info: "Get 3 kills without dying",
+    image: BASE_URL + "spell/UndyingRage.png",
+  },
+  wardsPlaced: {
+    name: "Scout",
+    info: "Place 10 wards",
+    image: ITEM_BASE_URL + "item/3340.png",
+  },
+  goldEarned: {
+    name: "Rich",
+    info: "Earn 15K gold",
+    image: BASE_URL + "passive/Draven_passive.png",
+  },
+  neutralMinionsKilled: {
+    name: "Carnivore",
+    info: "Kill 100 jungle monsters",
+    image: BASE_URL + "spell/TahmKenchW.png",
+  },
 };
 
 function getMedals(data) {
@@ -74,6 +115,18 @@ function getMedals(data) {
 
   if (data.firstTowerKill)
     medals.push(MEDAL_DATA.firstTowerKill);
+
+  if (data.largestKillingSpree >= 3)
+    medals.push(MEDAL_DATA.largestKillingSpree);
+
+  if (data.wardsPlaced >= 10)
+    medals.push(MEDAL_DATA.wardsPlaced);
+
+  if (data.goldEarned >= 15000)
+    medals.push(MEDAL_DATA.goldEarned);
+
+  if (data.neutralMinionsKilled >= 100)
+    medals.push(MEDAL_DATA.neutralMinionsKilled);
 
   return medals;
 }

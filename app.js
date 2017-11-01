@@ -85,6 +85,9 @@ function parseSummonerData(summoner) {
     gameStats.gold = HELPER.formatGold(playerObj.stats.goldEarned);
     gameStats.firstBloodKill = playerObj.stats.firstBloodKill;
     gameStats.firstTowerKill = playerObj.stats.firstTowerKill;
+    gameStats.largestKillingSpree = playerObj.stats.largestKillingSpree;
+    gameStats.wardsPlaced = playerObj.stats.wardsPlaced;
+    gameStats.neutralMinionsKilled = playerObj.stats.neutralMinionsKilled;
     gameStats.medals = MEDALS.getMedals(gameStats);
 
     playerStats.push(gameStats);
