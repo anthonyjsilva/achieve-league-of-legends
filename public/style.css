@@ -1,9 +1,6 @@
 :root {
-  --light-purple: #ca92c4;
-  --light-yellow: #d0d082;
   --win-color: #97cd5c;
   --loss-color: indianred;
-  /*--highlight-color: #d14a55;*/
   --highlight-color: indianred;
 }
 
@@ -23,15 +20,12 @@ body {
   flex-wrap: wrap;
   text-align: center;
   justify-content: center;
-  /*background-color: #383838;*/
   background-color: rgba(20, 20, 20, .95);
   background: linear-gradient(to bottom, #414345, #232526);
   background-attachment: fixed;
   color: lightgray;
   margin: 0;
   position: relative;
-  /*min-height: 100%;*/
-  /*padding-bottom: 180px;*/
   background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -44,9 +38,6 @@ header {
   align-items: center;
   text-transform: uppercase;
   background: rgba(20, 20, 20, 1);
-  /*margin-bottom: 30px;*/
-  /*background: rgba(20, 20, 20, .95);*/
-  /*background: rgba(20, 20, 20, .9);*/
 }
 
 header div {
@@ -57,14 +48,10 @@ header div a {
   font-size: 1.5em;
   color: white;
   text-decoration: none;
-  /*text-shadow: 2px 2px 17px #0c0c0c;*/
-  /*font-family: 'Knewave', cursive;*/
   letter-spacing: 5px;
 }
 
 header div a:hover {
-  /*position: relative;
-  top: 2px;*/
   color: indianred;
 }
 

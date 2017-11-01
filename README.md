@@ -1,13 +1,20 @@
 # Achieve
-Personal project to showcase my skills as a Full Stack developer
+Capstone project created to demonstrate both frontend and backend web development skills learned while attending The Iron Yard coding bootcamp.
 
-!["screenshot"](screenshots/sc.png "screenshot")
+!["screenshot"](screenshots/sc1.png "screenshot")
 
->Achieve is a web app built using the Riot Games Developer API that allows you to track achievements for your League of Legends account. It is light-weight, minimalistic, and mobile friendly providing you unique information about summoners.
+>Achieve is a fan site that brings various extra achievements to the popular game, "League of Legends", providing players additional incentives to play well.
+
+>By searching their account names, players can view awards earned for recent games.
+
+
+### About
+Achieve is built using the Riot Games Developer API and runs in a Node environment. It uses Express server to serve files, node-fetch for HTTP requests, and Mustache template engine for rendering pages to the client.
 
 ### Roadblocks
-- [x] multiple parallel http requests
-- [x] mustache partials
+- api key rate limiting
+- multiple parallel http requests
+- large data sets
 
 ### Stretch Goals
 - [ ] mobile friendly
@@ -17,6 +24,15 @@ Personal project to showcase my skills as a Full Stack developer
 - [ ] live game lookup
 
 ### Design sketches
-<!-- <img src="nb1.jpg" width="250" title="HTML sketch">  -->
+<img src="screenshots/nb1.jpg" width="250" title="Design sketch">
+<img src="screenshots/nb2.jpg" width="250" title="Design sketch">
+<img src="screenshots/nb3.jpg" width="250" title="Design sketch">
 
-### More Screenshots
+### Old Screenshot
+!["screenshot"](screenshots/sc.png "screenshot")
+
+
+### Finished Product Screenshots
+!["screenshot"](screenshots/sc1.png "screenshot")
+!["screenshot"](screenshots/sc2.png "screenshot")
+!["screenshot"](screenshots/sc3.png "screenshot")
