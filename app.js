@@ -83,6 +83,7 @@ function parseSummonerData(summoner) {
     gameStats.level = playerObj.stats.champLevel;
     gameStats.cs = playerObj.stats.totalMinionsKilled;
     gameStats.gold = HELPER.formatGold(playerObj.stats.goldEarned);
+    gameStats.goldEarned = playerObj.stats.goldEarned;
     gameStats.firstBloodKill = playerObj.stats.firstBloodKill;
     gameStats.firstTowerKill = playerObj.stats.firstTowerKill;
     gameStats.largestKillingSpree = playerObj.stats.largestKillingSpree;
